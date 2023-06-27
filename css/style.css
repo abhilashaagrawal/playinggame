@@ -1,0 +1,39 @@
+.a_mysection{
+    border:8px solid #0DCAF0 !important;
+}
+.a_h33{
+    height: 263px;
+}
+.a_h3{
+    height:200px;
+}
+.a_hand{
+    background-image: url('../img/hand1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+.a_blockbtn{
+    margin-top: 320px;
+}
+.a_underline{
+    text-decoration: underline;
+}
+.a_b1{
+    height:48px;
+    border-style: outset;
+    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.8);
+    background-color: rgb(109, 174, 200);
+    color:white;
+}
+.a_active{
+    transform: translate(1px,1px);
+    box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.8);
+}
+.a_circle{
+    width:20px;
+    height:20px;
+}
+.a_leftpinky{
+    display: show;
+}
