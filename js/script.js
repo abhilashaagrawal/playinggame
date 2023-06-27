@@ -14,6 +14,12 @@ let logOut=()=>{
     window.localStorage.clear();
     window.location.reload();
 }
+let playSound=()=>{
+    //console.log('okkk');
+    let at=document.querySelector('.a_audio');
+   // console.log(at);
+    at.play();
+}
 //()();
 (()=>{
     let fn=window.localStorage.getItem('First_name');
