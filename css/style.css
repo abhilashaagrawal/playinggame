@@ -21,6 +21,7 @@
     color:white;
 }
 .a_active{
+    background-color: lightslategray;
     transform: translate(1px,1px);
     box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.8);
 }
@@ -29,5 +30,5 @@
     height:20px;
 }
 .a_leftpinky{
-    display: show;
+    display: none;
 }
