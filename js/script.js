@@ -57,6 +57,7 @@ let start=()=>{
 }
 //()();
 (()=>{
+    let currentCharacterPosition=0;
     let fn=window.localStorage.getItem('First_name');
     let ln=window.localStorage.getItem('Last_name');
     let l_pinky=document.querySelector('.l_pinky');
@@ -227,6 +228,8 @@ let start=()=>{
     
     });
     document.addEventListener('keyup',(e)=>{
+        currentCharacterPosition+=1;
+        console.log(currentCharacterPosition);
         console.log(e);
         var elements=document.getElementsByClassName('a_active');
         //console.log(elements);
@@ -253,7 +256,15 @@ let start=()=>{
    document.querySelector('.a_duration').innerHTML=localStorage.getItem('Duration')===null?' ':localStorage.getItem('Duration')+':00';
 
    let story=`When a lion was resting in the jungle, a mouse began racing up and down his body for amusement. The lion’s sleep was interrupted, and he awoke enraged. The lion was going to eat the mouse when the mouse begged him to let him go. “I assure you, if you save me, I will be of immense help to you in the future.” The lion laughed at the mouse’s self-assurance and freed him.A group of hunters arrived in the forest one day and captured the lion. They had him tied to a tree. The lion began to roar as he struggled to get out. Soon, the mouse passed by and spotted the lion in distress. He dashed off, biting on the ropes to free the lion, and the two hurried off into the woods.`;
-   //let words=story.split(' ');
+   let words=story.split(' ');
    
-   console.log(story.split(' '));
+   //console.log(words);
+   let x=words.slice(0,23).join(' ');
+  // console.log(words.slice(0,20).join());
+   document.querySelector('.a_typingcontent').innerHTML=x;
+
+   console.log(story.length);
+   var inTwoLineChar=(story.length)/100;
+   console.log(Math.ceil(inTwoLineChar));
+
 })();
