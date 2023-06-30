@@ -3,10 +3,12 @@
 let saveRegInfo=()=>{
     let fn=document.getElementById('First_name').value;
     let ln=document.getElementById('Last_name').value;
+    let dur=document.querySelector('.a_myselect').value;
     console.log(fn);
     console.log(ln);
     window.localStorage.setItem('First_name',fn);
     window.localStorage.setItem('Last_name',ln);
+    window.localStorage.setItem('Duration',dur);
     window.location.reload();
 }
 let logOut=()=>{
@@ -19,6 +21,39 @@ let playSound=()=>{
     let at=document.querySelector('.a_audio');
    // console.log(at);
     at.play();
+}
+let start=()=>{
+    //set the date we are counting down to 
+   // built in function
+   var nextTime=new Date().getTime();
+   nextTime=new Date(nextTime+(localStorage.getItem('Duration')*60*1000));
+   //create a new date object with the specified date time
+   const datetime=new Date(nextTime);
+   // Convert to Unix timestamp
+   const unixTimestamp = Math.floor(nextTime.getTime() / 1000)*1000;
+  // console.log(unixTimestamp);
+   setInterval(function(){
+    var now=new Date().getTime();
+    console.log('Next Time',unixTimestamp);
+    console.log('Current Time',now);
+    // Find the distance between now and the count down date
+    var distance = unixTimestamp - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="demo"
+    document.querySelector(".a_duration").innerHTML = minutes + "m " + seconds + "s ";
+
+    // If the count down is finished, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.querySelector(".a_duration").innerHTML = "EXPIRED";
+    }
+
+   },1000)
+
 }
 //()();
 (()=>{
@@ -100,6 +135,93 @@ let playSound=()=>{
         console.log(a);
         l_middle.style.display='block';
        }
+       if(e.keyCode==114){
+        let a=document.querySelector('.a_r').classList.add('a_active');
+        console.log(a);
+        l_index.style.display='block';
+       }
+       if(e.keyCode==102){
+        let a=document.querySelector('.a_f').classList.add('a_active');
+        console.log(a);
+        l_index.style.display='block';
+       }
+       if(e.keyCode==118){
+        let a=document.querySelector('.a_v').classList.add('a_active');
+        console.log(a);
+        l_index.style.display='block';
+       }
+       if(e.keyCode==116){
+        let a=document.querySelector('.a_t').classList.add('a_active');
+        console.log(a);
+        l_index.style.display='block';
+       }
+       if(e.keyCode==103){
+        let a=document.querySelector('.a_g').classList.add('a_active');
+        console.log(a);
+        l_index.style.display='block';
+       }
+       if(e.keyCode==98){
+        let a=document.querySelector('.a_b').classList.add('a_active');
+        console.log(a);
+        l_index.style.display='block';
+       }
+
+       if(e.keyCode==121){
+        let a=document.querySelector('.a_y').classList.add('a_active');
+        console.log(a);
+        r_index.style.display='block';
+       }
+       if(e.keyCode==104){
+        let a=document.querySelector('.a_h').classList.add('a_active');
+        console.log(a);
+        r_index.style.display='block';
+       }
+       if(e.keyCode==110){
+        let a=document.querySelector('.a_n').classList.add('a_active');
+        console.log(a);
+        r_index.style.display='block';
+       }
+       if(e.keyCode==117){
+        let a=document.querySelector('.a_u').classList.add('a_active');
+        console.log(a);
+        r_index.style.display='block';
+       }
+       if(e.keyCode==106){
+        let a=document.querySelector('.a_j').classList.add('a_active');
+        console.log(a);
+        r_index.style.display='block';
+       }
+       if(e.keyCode==109){
+        let a=document.querySelector('.a_m').classList.add('a_active');
+        console.log(a);
+        r_index.style.display='block';
+       }
+       if(e.keyCode==105){
+        let a=document.querySelector('.a_i').classList.add('a_active');
+        console.log(a);
+        r_middle.style.display='block';
+       }
+       if(e.keyCode==107){
+        let a=document.querySelector('.a_k').classList.add('a_active');
+        console.log(a);
+        r_middle.style.display='block';
+       }
+       if(e.keyCode==111){
+        let a=document.querySelector('.a_o').classList.add('a_active');
+        console.log(a);
+        r_ring.style.display='block';
+       }
+       if(e.keyCode==108){
+        let a=document.querySelector('.a_l').classList.add('a_active');
+        console.log(a);
+        r_ring.style.display='block';
+       }
+       if(e.keyCode==112){
+        let a=document.querySelector('.a_p').classList.add('a_active');
+        console.log(a);
+        r_pinky.style.display='block';
+       }
+     
      
        playSound();
     
@@ -107,14 +229,31 @@ let playSound=()=>{
     document.addEventListener('keyup',(e)=>{
         console.log(e);
         var elements=document.getElementsByClassName('a_active');
+        //console.log(elements);
         for(var i=0;i<elements.length;i++){
             elements[i].classList.remove('a_active');
         }
         var elements=document.getElementsByClassName('a_leftpinky');
+       // console.log(elements);
         for (var i=0;i<elements.length;i++)
         {
             elements[i].style.display="none";
         }
       //  document.querySelector('.a_leftpinky').style.display='none';
+   
     });
+    var o=' ';
+    for(var i=1;i<=60;i++)
+    {
+      o = o + `<option value="${i}">${i}</option>`;
+    }
+   // console.log(o);
+   document.querySelector('.a_myselect').innerHTML=o;
+
+   document.querySelector('.a_duration').innerHTML=localStorage.getItem('Duration')===null?' ':localStorage.getItem('Duration')+':00';
+
+   let story=`When a lion was resting in the jungle, a mouse began racing up and down his body for amusement. The lion’s sleep was interrupted, and he awoke enraged. The lion was going to eat the mouse when the mouse begged him to let him go. “I assure you, if you save me, I will be of immense help to you in the future.” The lion laughed at the mouse’s self-assurance and freed him.A group of hunters arrived in the forest one day and captured the lion. They had him tied to a tree. The lion began to roar as he struggled to get out. Soon, the mouse passed by and spotted the lion in distress. He dashed off, biting on the ropes to free the lion, and the two hurried off into the woods.`;
+   //let words=story.split(' ');
+   
+   console.log(story.split(' '));
 })();

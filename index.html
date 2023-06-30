@@ -28,6 +28,13 @@
                           <label for="Last_name" class="form-label">Last Name</label>
                           <input name="Last_name" type="text" class="form-control" id="Last_name">
                         </div>
+                        <div class="mb-3">
+                            <label for="minutes" class="form-label">Minutes</label>
+                            <select class="form-select a_myselect" aria-label="Default select example">
+                                <option selected>Select minutes</option>
+                                
+                            </select>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -38,11 +45,13 @@
             </div>
         </div>
         <div class="container">
-            <section class="a_tbdr a_mysection rounded-4">
+            <section class="a_tbdr a_mysection rounded-4 overflow-hidden" style="border:8px solid rgb(19, 124, 165) !important;">
                 <div class="row m-0 h-100 overflow-hidden">
                     <div class="col-9 p-0 a_tbdr" style="background: #efffd7;">
-                        <div class="a_h3">
-                            <h2 class="a_tbdr overflow-hidden mb-0 ps-2 pe-1">Lorem ipsum dolor sit amet.The graphic and typographic operators know this well,in reality all the professions dealing with the universe of communication have a stable relationship with these words, but what is it?  </h2>
+                        <div class="a_h3 overflow-hidden">
+                            <h2 class="a_tbdr mb-0 ps-2 pe-1 a_typingcontent">
+                                <span style="color: rgb(19, 124, 165);">W</span><span class="text-decoration-underline fw-bold text-danger display-5">h</span>en a lion was resting in the jungle, a mouse began racing up and down his body for amusement. The lion’s sleep was interrupted, and he awoke enraged. The lion was going to eat the mouse when the mouse begged him to let him go. “I assure you, if you save me, I will be of immense help to you in the future.” The lion laughed at the mouse’s self-assurance and freed him.A group of hunters arrived in the forest one day and captured the lion. They had him tied to a tree. The lion began to roar as he struggled to get out. Soon, the mouse passed by and spotted the lion in distress. He dashed off, biting on the ropes to free the lion, and the two hurried off into the woods. 
+                            </h2>
 
                         </div>
                         <div class="a_keyboard a_h33 a_tbdr">
@@ -142,8 +151,8 @@
                     <div class="col-3 p-0 a_tbdr" style="background: #D2F595;">
                         <button class="btn  btn-sm border border-dark bg-dark float-end me-2 mt-2" disabled><i class="fa-solid fa-xmark text-white"></i></button>
                         <h5 class="pt-5 ps-3 a_welcome"></h5>
-                        <h6 class="pt-4 ms-3">Time</h6>
-                        <h1 class="display-2 fw-bold ms-3 border-bottom border-4">03:00</h1>
+                        <h6 class="pt-4 ms-3">Time <button class="btn btn-success ms-2" onclick="start()">Start</button></h6>
+                        <h1 class="display-2 fw-bold ms-3 border-bottom border-4 a_duration">03:00</h1>
                         <div class="d-grid gap-2 ms-2 me-2 mt-5">
                             <button class="btn btn-success"><i class="fa-sharp fa-solid fa-arrow-left me-2"></i>Previous</button>
                             <button class="btn btn-info">Next<i class="fa-sharp fa-solid fa-arrow-right ms-2"></i></button>
