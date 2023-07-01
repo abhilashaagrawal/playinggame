@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <button onclick="ashi()">Test</button>
+        <h3 class="myheading">Hello</h3>
+        <script>
+            let story=`When a lion was resting in the jungle, a mouse began racing up and down his body for amusement. The lion’s sleep was interrupted, and he awoke enraged. The lion was going to eat the mouse when the mouse begged him to let him go. “I assure you, if you save me, I will be of immense help to you in the future.” The lion laughed at the mouse’s self-assurance and freed him.A group of hunters arrived in the forest one day and captured the lion. They had him tied to a tree. The lion began to roar as he struggled to get out. Soon, the mouse passed by and spotted the lion in distress. He dashed off, biting on the ropes to free the lion, and the two hurried off into the woods.`;
+            var twoLineCharCount=110;
+            var initialSequence=1;
+            var currentCharPosition=1;
+            let ashi=()=>{
+               // console.log(story);
+               document.querySelector('.myheading').innerHTML=story;
+               console.log(story.length);
+               var totalIteration=Math.ceil(story.length/twoLineCharCount);
+               console.log(totalIteration);
+            }
+            document.addEventListener('keyup',()=>{
+               // console.log('okk');
+                console.log('initial',initialSequence);
+               console.log('current',currentCharPosition);
+               if(currentCharPosition>=twoLineCharCount)
+               {    currentCharPosition=0;
+                    initialSequence++;
+                    console.log('new initial',initialSequence);
+                    //currentCharPosition=0;
+               }
+               else{
+
+                   currentCharPosition++;
+               }
+            })
+        </script>
+    </body>
+</html>
