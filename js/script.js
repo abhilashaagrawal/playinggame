@@ -1,4 +1,25 @@
-
+var initialSequence=1;
+    var currentCharacterPosition=0;
+    let totalCCLoc=0; 
+    let story=`When a lion was resting in the jungle, a mouse began racing up and down his body for amusement. The lion’s sleep was interrupted, and he awoke enraged. The lion was going to eat the mouse when the mouse begged him to let him go. “I assure you, if you save me, I will be of immense help to you in the future.” The lion laughed at the mouse’s self-assurance and freed him.A group of hunters arrived in the forest one day and captured the lion. They had him tied to a tree. The lion began to roar as he struggled to get out. Soon, the mouse passed by and spotted the lion in distress. He dashed off, biting on the ropes to free the lion, and the two hurried off into the woods.`;
+    let words=story.split(' ');
+    //console.log(words);
+    let x=words.slice(0,23).join(' ');
+    // console.log(words.slice(0,20).join());
+    let nextChar=' ';
+    let currentChar=" ";
+    let fn=window.localStorage.getItem('First_name');
+    let ln=window.localStorage.getItem('Last_name');
+    let l_pinky=document.querySelector('.l_pinky');
+    let l_ring=document.querySelector('.l_ring');
+    let l_middle=document.querySelector('.l_middle');
+    let l_index=document.querySelector('.l_index');
+    let l_thumb=document.querySelector('.l_thumb');
+    let r_thumb=document.querySelector('.r_thumb');
+    let r_index=document.querySelector('.r_index');
+    let r_middle=document.querySelector('.r_middle');
+    let r_ring=document.querySelector('.r_ring');
+    let r_pinky=document.querySelector('.r_pinky');
 
 let saveRegInfo=()=>{
     let fn=document.getElementById('First_name').value;
@@ -16,11 +37,21 @@ let logOut=()=>{
     window.localStorage.clear();
     window.location.reload();
 }
-let playSound=()=>{
+let playSound=(status)=>{
     //console.log('okkk');
-    let at=document.querySelector('.a_audio');
-   // console.log(at);
-    at.play();
+    if(status=='correct'){
+        let at=document.querySelector('.a_audio');
+    // console.log(at);
+        at.src='../sound/k.mp3';
+        at.play();
+    }
+    else{
+        // console.log(at);  
+        let at=document.querySelector('.a_audio');
+        at.src='../sound/error.mp3';
+        at.play();
+    }
+    
 }
 let start=()=>{
     //set the date we are counting down to 
@@ -57,35 +88,13 @@ let start=()=>{
 }
 //()();
 (()=>{
-    
-   let story=`When a lion was resting in the jungle, a mouse began racing up and down his body for amusement. The lion’s sleep was interrupted, and he awoke enraged. The lion was going to eat the mouse when the mouse begged him to let him go. “I assure you, if you save me, I will be of immense help to you in the future.” The lion laughed at the mouse’s self-assurance and freed him.A group of hunters arrived in the forest one day and captured the lion. They had him tied to a tree. The lion began to roar as he struggled to get out. Soon, the mouse passed by and spotted the lion in distress. He dashed off, biting on the ropes to free the lion, and the two hurried off into the woods.`;
-   let words=story.split(' ');
    
-   //console.log(words);
-   let x=words.slice(0,23).join(' ');
-  // console.log(words.slice(0,20).join());
    document.querySelector('.a_typingcontent').innerHTML=x;
 
    console.log(story.length);
    var perTwoLineCharCount=110;
    var totalIteration=Math.ceil(story.length/perTwoLineCharCount);
    console.log(totalIteration);
-
-    var initialSequence=1;
-    var currentCharacterPosition=0;
-    let totalCCLoc=0;
-    let fn=window.localStorage.getItem('First_name');
-    let ln=window.localStorage.getItem('Last_name');
-    let l_pinky=document.querySelector('.l_pinky');
-    let l_ring=document.querySelector('.l_ring');
-    let l_middle=document.querySelector('.l_middle');
-    let l_index=document.querySelector('.l_index');
-    let l_thumb=document.querySelector('.l_thumb');
-    let r_thumb=document.querySelector('.r_thumb');
-    let r_index=document.querySelector('.r_index');
-    let r_middle=document.querySelector('.r_middle');
-    let r_ring=document.querySelector('.r_ring');
-    let r_pinky=document.querySelector('.r_pinky');
 
     //console.log('Page loaded Successfully');
     
@@ -106,6 +115,18 @@ let start=()=>{
     //keypress sound play
     document.addEventListener('keypress',(e)=>{
        // console.log('okk');
+       currentChar=e.key;
+       console.log(currentChar);
+       if(currentChar==nextChar)
+       { // console.log('Wrong',currentChar+nextChar);  
+        //document.querySelector('.a1_audio').play();
+            playSound('correct');
+       }
+       else{
+        //play error sound
+       // console.log('Right',currentChar+nextChar);
+            playSound('incorrect');
+       }
        console.log(e.keyCode);
        if(e.keyCode==97){
         let a=document.querySelector('.a_a').classList.add('a_active');
@@ -240,7 +261,7 @@ let start=()=>{
        }
      
      
-       playSound();
+      // playSound('correct');
     
     });
     document.addEventListener('keyup',(e)=>{
@@ -273,26 +294,32 @@ let start=()=>{
 
       if(initialSequence===1){
         let x=story.substring(initialSequence-1,(initialSequence*perTwoLineCharCount));
-            console.log(story.substring(initialSequence-1,(initialSequence*perTwoLineCharCount)));
-            let p1=x.substring(0,currentCharacterPosition);
-            let p2=x.substring(currentCharacterPosition);
-            p2="<span style='text-decoration:underline; color:red;'>"+ p2.charAt(0) +"</span>"+p2.slice(1);
+            console.log(x);
+            var p1=x.substring(0,currentCharacterPosition);
+            var p2=x.substring(currentCharacterPosition);
+            nextChar=p2.charAt(0);
+            p2="<span style='text-decoration:underline; color:red;font-weight:bolder;'>"+ nextChar +"</span>"+p2.slice(1);
             console.log('part 1-->',p1);
             console.log('part 1-->',p2);
             let a=`<span style="color:rgb(19, 124, 165)">${p1}</span>`+p2;
             document.querySelector('.a_typingcontent').innerHTML=a;
+            console.log('NextChar-->',nextChar);
+        
     
       }
       else{
-        let x=story.substring((initialSequence-1)*perTwoLineCharCount,initialSequence*perTwoLineCharCount);
-            console.log(story.substring((initialSequence-1)*perTwoLineCharCount,initialSequence*perTwoLineCharCount));
-            let p1=x.substring(0,currentCharacterPosition);
-            let p2=x.substring(currentCharacterPosition);
-            p2="<span style='text-decoration:underline; color:red;'>"+ p2.charAt(0) +"</span>"+p2.slice(1);
+        let x=story.substring((initialSequence-1)*perTwoLineCharCount,(initialSequence*perTwoLineCharCount));
+            console.log(x);
+            var p1=x.substring(0,currentCharacterPosition);
+            var p2=x.substring(currentCharacterPosition);
+            nextChar=p2.charAt(0);
+            p2="<span style='text-decoration:underline; color:red;font-weight:bolder;'>"+ nextChar +"</span>"+p2.slice(1);
             console.log('part 1-->',p1);
             console.log('part 1-->',p2);
             let a=`<span style="color:rgb(19, 124, 165)">${p1}</span>`+p2;
-            document.querySelector('.a_typingcontent').innerHTML=x;
+            document.querySelector('.a_typingcontent').innerHTML=a;
+
+            console.log('NextChar-->',nextChar);
       }
       totalCCLoc++;
       console.log('ccloc',totalCCLoc);
