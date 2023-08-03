@@ -61,7 +61,7 @@ let start=()=>{
    //create a new date object with the specified date time
    const datetime=new Date(nextTime);
    // Convert to Unix timestamp
-   const unixTimestamp = Math.floor(nextTime.getTime() / 1000)*1000;
+   const unixTimestamp = Math.floor(datetime.getTime() / 1000)*1000;
   // console.log(unixTimestamp);
    setInterval(function(){
     var now=new Date().getTime();
@@ -79,7 +79,7 @@ let start=()=>{
 
     // If the count down is finished, write some text
     if (distance < 0) {
-        clearInterval(x);
+        //clearInterval(x);
         document.querySelector(".a_duration").innerHTML = "EXPIRED";
     }
 
